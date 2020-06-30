@@ -20,11 +20,12 @@ public class contactPanel extends JPanel {
     private URL logoUrl = getClass().getResource("../Resources/logoNewA.png");
     Image logoImg = new ImageIcon(logoUrl).getImage();
 
+    private URL exitUrl = getClass().getResource("../Resources/exit32.png");
+    Image logoExit = new ImageIcon(exitUrl).getImage();
+
     private URL agreeUrl = getClass().getResource("../Resources/okA.png");
     Image logoAgree = new ImageIcon(agreeUrl).getImage();
 
-    private URL cancelUrl = getClass().getResource("../Resources/cancelA.png");
-    Image logoCancel = new ImageIcon(cancelUrl).getImage();
 
     public contactPanel() throws IOException {
 
@@ -97,7 +98,6 @@ public class contactPanel extends JPanel {
              @Override
              public void actionPerformed(ActionEvent e) {
                  boolean control = true;
-
                  String nombre = nameText.getText();
                  String apellido = surnameText.getText();
                  String empresa = companyText.getText();
@@ -132,6 +132,8 @@ public class contactPanel extends JPanel {
                  }
 
                  diary.getDiary().forEach(i-> System.out.println(i.toString()));
+
+
                  if(control){
                      diary.getDiary().add(new Contact(nombre,apellido,empresa,email,telefono));
                      try{
@@ -140,15 +142,15 @@ public class contactPanel extends JPanel {
                          System.out.println("Error archivo");
                      }
                      JOptionPane.showMessageDialog(null,"Contacto Agregado");
-                     System.exit(0);
                  }
              }
          });
 
+
         JButton cancel = new JButton();
         cancel.setBounds(590,210,30,30);
         cancel.setOpaque(false);
-        cancel.setIcon(new ImageIcon(logoCancel));
+        cancel.setIcon(new ImageIcon(logoExit));
         cancel.setBorder(null);
         cancel.setFocusPainted(false);
         cancel.setBackground(Color.white);
@@ -156,7 +158,7 @@ public class contactPanel extends JPanel {
         cancel.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+                mainPanel.contactWindow.dispose();
             }
         });
     }

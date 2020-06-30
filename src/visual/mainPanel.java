@@ -17,6 +17,16 @@ public class mainPanel extends JPanel {
     private URL exitUrl = getClass().getResource("../Resources/exit32.png");
     Image logoExit = new ImageIcon(exitUrl).getImage();
 
+    public static contactWindow contactWindow = new contactWindow();
+
+    public visual.contactWindow getContactWindow() {
+        return contactWindow;
+    }
+
+    public void setContactWindow(visual.contactWindow contactWindow) {
+        this.contactWindow = contactWindow;
+    }
+
     public mainPanel(){
 
         this.setLayout(null);
@@ -41,7 +51,7 @@ public class mainPanel extends JPanel {
         newContact.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                contactWindow contactWindow = new contactWindow();
+                contactWindow.setVisible(true);
             }
         });
 
@@ -56,7 +66,7 @@ public class mainPanel extends JPanel {
         contact.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                listWindow listWindow = new listWindow();
+                 listWindow listWindow = new listWindow();
             }
         });
 
@@ -83,4 +93,5 @@ public class mainPanel extends JPanel {
         this.setOpaque(false);
         super.paint(g);
     }
+
 }

@@ -5,11 +5,17 @@ import datos.Contact;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.net.URL;
 import java.util.Iterator;
 
 import static logica.main.diary;
 
 public class listWindow extends JFrame {
+
+    private URL exitUrl = getClass().getResource("../Resources/exit32.png");
+    Image logoExit = new ImageIcon(exitUrl).getImage();
+
     public listWindow() {
 
         this.setSize(1000, 200);
@@ -40,5 +46,23 @@ public class listWindow extends JFrame {
         table.setPreferredScrollableViewportSize(new Dimension(500, 80));
         JScrollPane scrollpane = new JScrollPane(table);
         this.getContentPane().add(scrollpane, BorderLayout.CENTER);
+
+        JButton salir = new JButton();
+        salir.setSize(50,50);
+        salir.setBorder(null);
+        salir.setIcon(new ImageIcon(logoExit));
+        salir.setFocusPainted(false);
+        salir.setBackground(Color.white);
+        this.getContentPane().add(salir,BorderLayout.SOUTH);
+        salir.addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cerrar();
+            }
+        });
+    }
+
+    public void cerrar(){
+        this.setVisible(false);
     }
 }
